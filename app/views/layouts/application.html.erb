@@ -13,7 +13,18 @@
 
   <body>
     <header>
-      <% if user_signed_in? %>
+      <div>
+        <ul>
+          <li><%= link_to "Bookers", root_path %></li>
+          <li><%= link_to "Home", 'users/show' %></li>
+          
+          <% if user_signed_in? %>
+        <li>
+          <%= link_to "Users", ""%>
+        </li>
+        <li>
+          <%= link_to "Books", books_path %>
+        </li>
         <li>
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </li>
@@ -25,7 +36,19 @@
           <%= link_to "Log in", new_user_session_path %>
         </li>
       <% end %>
+        </ul>
+      </div>
+      
     </header>
-    <%= yield %>
+     <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
