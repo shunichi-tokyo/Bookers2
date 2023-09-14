@@ -1,7 +1,7 @@
 <P>Books#index</P>
 
 <h1>New book</h1>
-<%= form_with model: Book.new do |f| %>
+<%= form_with model: @book do |f| %>
 <h4>Title</h4>
 <%= f.text_field :title %>
 
@@ -9,4 +9,13 @@
 <%= f.text_area :body %>
 
 <%= f.submit 'Create Book' %>
+<% end %>
+
+<% @books.each do |book| %>
+
+<p>ユーザー:<%= @books.user.name %></p>
+
+<p>タイトル</p>
+<span><%= book.title %></span>
+
 <% end %>

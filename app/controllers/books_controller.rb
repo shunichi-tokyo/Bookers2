@@ -6,13 +6,14 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
-    book.save
-    @books = Book.all
-    redirect_to books_path
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    @book.save
+    redirect_to user_path(current_user)
   end
 
   def show
+    @book = Book.new
   end
 
   def destroy
@@ -20,7 +21,7 @@ class BooksController < ApplicationController
 
   private
 
-  def book_path
+  def book_params
     params.require(:book).permit(:title, :body)
   end
 
