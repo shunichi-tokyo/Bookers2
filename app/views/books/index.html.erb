@@ -13,9 +13,14 @@
 
 <% @books.each do |book| %>
 
-<p>ユーザー:<%= @books.user.name %></p>
-
+<p>ユーザーネーム：<%= book.user.name %></p>
 <p>タイトル</p>
 <span><%= book.title %></span>
+<span><%= book.body %></span>
+
+<% if @book.user == current_user %>
+  <%= link_to "Destroy", book_path(@book), method: :derete %>
+<% end %>
+
 
 <% end %>
