@@ -1,36 +1,5 @@
 <p>Books#show</p>
 
-<div>
-    <h3>User info</h3>
-    <%= image_tag @book.user.get_profile_image(100,100) %>
-    <p>name:<%= @book.user.name %></p>
-</div>
-
-
-<h3>Book detail</h3>
-<div>
-    <%= image_tag @book.user.get_profile_image(100,100) %>
-    <% @books.each do |book| %>
-    <p>Title:<%= book.title %></p>
-    <p>Opinion:<%= book.body %></p>
-    <p>name:<%= book.user.name %></p>
-    <%= link_to 'Edit', edit_book_path(book.id) %>
-    <% if @book.user == current_user %>
-  <%= link_to "Destroy", book_path(@book), method: :delete %>
-<% end %>
-</div>
-
-<% end %>
-
-<h1>New book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 
 <%= form_with model: Book.new do |f| %>
 <h4>Title</h4>
@@ -48,3 +17,17 @@
 <span><%= book.title %></span>
 
 <% end %>
+
+<h3>Book detail</h3>
+<div>
+    <%= image_tag @book.user.get_profile_image(100,100) %>
+    <% @books.each do |book| %>
+    <p>Title:<%= book.title %></p>
+    <p>Opinion:<%= book.body %></p>
+    <p>name:<%= book.user.name %></p>
+     <%= link_to 'Edit', edit_book_path(book.id) %>
+     <% if @book.user == current_user %>
+      <%= link_to "Destroy", book_path(@book), method: :delete %>
+      <% end %>
+  <% end %>
+</div>

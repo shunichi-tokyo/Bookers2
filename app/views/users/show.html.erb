@@ -1,14 +1,16 @@
 <p>Users#show</p>
 
-<div>
-    <h3>User info</h3>
-    <%= image_tag @user.get_profile_image(100,100) %>
-    <p>name:<%= @user.name %></p>
-    <p>Introduction:<%= @user.introduction %></p>
 
-    <p><%= link_to "User edit", edit_user_path %></p>
-</div>
 
+<%= form_with model: Book.new do |f| %>
+<h4>Title</h4>
+<%= f.text_field :title %>
+
+<h4>Opinion</h4>
+<%= f.text_area :body %>
+
+<%= f.submit 'Create Book' %>
+<% end %>
 
 <h3>Book detail</h3>
 
@@ -21,24 +23,4 @@
     <p>name:<%= book.user.name %></p>
 </div>
 
-<% end %>
-
-<h1>New book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: Book.new do |f| %>
-<h4>Title</h4>
-<%= f.text_field :title %>
-
-<h4>Opinion</h4>
-<%= f.text_area :body %>
-
-<%= f.submit 'Create Book' %>
 <% end %>
