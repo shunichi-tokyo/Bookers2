@@ -1,20 +1,14 @@
 <p>users#index</p>
 
+<%= render 'list', user: @user, book: @book %>
+
 <div>
-    <h3>User info</h3>
-    <%= image_tag @user.get_profile_image(100,100) %>
-    <p>name:<%= @user.name %></p>
-    <p>Introduction:<%= @user.introduction %></p>
 
-    <p><%= link_to "User edit", edit_user_path %></p>
-</div>
+<h2>Users</h2>
+<% @users.each do |user| %>
 
-<h1>New book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+<%= image_tag user.get_profile_image(100,100) %>
+<p>ユーザーネーム：<%= user.name %></p>
+<%= link_to "Show", user_path(user.id) %>
+
 <% end %>

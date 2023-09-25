@@ -1,18 +1,40 @@
-<div>
-    <h3>User info</h3>
-    <%= image_tag @user.get_profile_image(100,100) %>
-    <p>name:<%= @user.name %></p>
-    <p>Introduction:<%= @user.introduction %></p>
+<p id="notice"></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>User info</h3>
+      <%= image_tag user.get_profile_image(100,100) %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <p>name:<%= user.name %></p>
+          </tr>
+          <tr>
+            <p>Introduction:<%= user.introduction %></p>
+          </tr>
+          <tr>
+            <p><%= link_to "User edit", edit_user_path(user.id) %></p>
+          </tr>
+        </tbody>
+      </table>
+      <h1>New book</h1>
+          <% if book.errors.any? %>
+          <%= book.errors.count %>件のエラーが発生しました
+        <ul>
+          <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_with model: Book.new do |f| %>
+      <h4>Title</h4>
+        <%= f.text_field :title %>
 
-    <p><%= link_to "User edit", edit_user_path %></p>
+      <h4>Opinion</h4>
+        <%= f.text_area :body %>
+
+        <%= f.submit 'Create Book' %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<h1>New book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
